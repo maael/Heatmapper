@@ -16,6 +16,13 @@ var Heatmap = function(options){
   this.startMapping = function () {
     running = true;
     this.heatLog('Heatmap is logging.');
+    /* 
+      Idea for merging - 
+        - store event types in array.
+        - search type text for click -
+          - if found, do btn wrapped event,
+          - else do normal event.
+    */
     storedListeners['click'] = function (e) {
       if(e.srcElement.id != startBtn && e.srcElement.id != endBtn) {
         storedProcedures.push(e);
