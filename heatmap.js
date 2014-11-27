@@ -8,6 +8,19 @@ var Heatmap = function(options){
   storedListeners = {},
   running = false,
   self = this;
+  /*
+  window.addEventListener('onload', function(event) {
+    this.startMapping();
+  });
+  window.addEventListener('unload', function(event) {
+    this.stopMapping();
+  });
+  */
+  this.saveLog = function () {
+    var data = {'pageTitle':document.title,'storedProcedures':storedProcedures};
+    localStorage.setItem('heatmap',JSON.stringify(data));
+    this.heatLog('Heatmap for '+document.title+' saved.');
+  };
   this.heatLog = function (message) {
     var heatmapStyle = 'background-color:#f2dede;color:#a94442;font-weight:bold;padding:2px;',
       messageStyle = 'background-color:#f2dede;color:#000000;padding:2px;';
@@ -15,14 +28,10 @@ var Heatmap = function(options){
   };
   this.startMapping = function () {
     running = true;
+    function extractInformation (e) {
+      
+    }
     this.heatLog('Heatmap is logging.');
-    /* 
-      Idea for merging - 
-        - store event types in array.
-        - search type text for click -
-          - if found, do btn wrapped event,
-          - else do normal event.
-    */
     storedListeners['click'] = function (e) {
       if(e.srcElement.id != startBtn && e.srcElement.id != endBtn) {
         storedProcedures.push(e);
@@ -62,6 +71,7 @@ var Heatmap = function(options){
       running = false;
       this.heatLog('Heatmap has stopped. '+storedProcedures.length+' events captured.');
       this.anaylize();
+      this.saveLog();
     } else {
       this.heatLog('Error: Heatmap was not running, so cannot be stopped.');
     }

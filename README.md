@@ -10,7 +10,6 @@ A JavaScript library to track user interaction on webpages.
 ```
 
 ## To Do
-- [ ] Merge listeners into one.
 - [ ] Simulate play back of events.
 - [ ] Preserve across pages for specificed domain.
 - [ ] Store event stack into localStorage.
