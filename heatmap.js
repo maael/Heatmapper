@@ -29,33 +29,54 @@ var Heatmap = function(options){
   this.startMapping = function () {
     running = true;
     function extractInformation (e) {
-      
+      var newE = {};
+      newE.altKey = e.altKey;
+      newE.clientX = e.clientX;
+      newE.clientY = e.clientY;
+      newE.controlKey = e.controlKey;
+      newE.defaultPrevented = e.defaultPrevented;
+      newE.fromElement = e.fromElement;
+      newE.keyCode = e.keyCode;
+      newE.pageX = e.pageX;
+      newE.pageY = e.pageY;
+      newE.returnedValue = e.returnedValue;
+      newE.screenX = e.screenX;
+      newE.screenY = e.screenY;
+      newE.shiftKey = e.shiftKey;
+      newE.srcElement = e.srcElement.id;
+      newE.target = e.target.id;
+      newE.timeStamp = e.timeStamp;
+      newE.toElement = e.toElement.id;
+      newE.type = e.type;
+      newE.x = e.x;
+      newE.y = e.y;
+      return newE;
     }
     this.heatLog('Heatmap is logging.');
     storedListeners['click'] = function (e) {
       if(e.srcElement.id != startBtn && e.srcElement.id != endBtn) {
-        storedProcedures.push(e);
+        storedProcedures.push(extractInformation(e));
       }
     };
     storedListeners['dblclick'] = function (e) {
       if(e.srcElement.id != startBtn && e.srcElement.id != endBtn) {
-        storedProcedures.push(e);
+        storedProcedures.push(extractInformation(e));
       }
     };
     storedListeners['mousemove'] = function (e) {
-      storedProcedures.push(e);
+      storedProcedures.push(extractInformation(e));
     };
     storedListeners['contextmenu'] = function (e) {
-      storedProcedures.push(e);
+      storedProcedures.push(extractInformation(e));
     };
     storedListeners['wheel'] = function (e) {
-      storedProcedures.push(e);
+      storedProcedures.push(extractInformation(e));
     };
     storedListeners['focus'] = function (e) {
-      storedProcedures.push(e);
+      storedProcedures.push(extractInformation(e));
     };
     storedListeners['keydown'] = function (e) {
-      storedProcedures.push(e);
+      storedProcedures.push(extractInformation(e));
     };
     var documentBody = document.getElementsByTagName('body')[0];
     for(var listenerType in storedListeners) {
