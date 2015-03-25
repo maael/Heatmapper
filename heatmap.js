@@ -78,6 +78,30 @@ var Heatmap = function(options){
     storedListeners['keydown'] = function (e) {
       storedProcedures.push(extractInformation(e));
     };
+    storedListeners['keydown'] = function (e) {
+      storedProcedures.push(extractInformation(e));
+    };
+    storedListeners['dragstart'] = function (e) {
+      storedProcedures.push(extractInformation(e));
+    };
+    storedListeners['dragenter'] = function (e) {
+      storedProcedures.push(extractInformation(e));
+    };
+    storedListeners['dragover'] = function (e) {
+      storedProcedures.push(extractInformation(e));
+    };
+    storedListeners['dragleave'] = function (e) {
+      storedProcedures.push(extractInformation(e));
+    };
+    storedListeners['drag'] = function (e) {
+      storedProcedures.push(extractInformation(e));
+    };
+    storedListeners['drop'] = function (e) {
+      storedProcedures.push(extractInformation(e));
+    };
+    storedListeners['dragend'] = function (e) {
+      storedProcedures.push(extractInformation(e));
+    };
     var documentBody = document.getElementsByTagName('body')[0];
     for(var listenerType in storedListeners) {
        documentBody.addEventListener(listenerType, storedListeners[listenerType], false);
