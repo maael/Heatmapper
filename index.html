@@ -4,11 +4,18 @@
 	<meta charset="UTF-8">
 	<title>Heatmap Prototype</title>
 	<script src="heatmap.js" type="text/javascript"></script>
+	<script src="heatplay.js" type="text/javascript"></script>
 	<script>
 	window.onload = function() {
 		mapper = new Heatmap({'startBtn':'startBtn','endBtn':'endBtn'});
+		var canvas = document.getElementById("playbackCanvas"),
+			ctx = canvas.getContext("2d");
+		player = new Heatplay({'canvas': 'playbackCanvas'});
+		ctx.canvas.width  = window.innerWidth;
+		ctx.canvas.height = window.innerHeight;
 		document.getElementById('startBtn').addEventListener('click', function(){mapper.startMapping();}, false);
 		document.getElementById('endBtn').addEventListener('click', function(){mapper.stopMapping();}, false);
+		document.getElementById('playbackBtn').addEventListener('click', function(){mapperPlayback.playback(mapper.log);}, false);
 	};
 	</script>
 	<style>
@@ -20,10 +27,25 @@
 			height: 100%;
 			width: 100%;
 		}
+		#startBtn, #endBtn, #playbackBtn {
+			position: absolute;
+			top: 0px;
+		}
+		#startBtn {
+			left: 50px;
+		}
+		#endBtn {
+			left: 100px;
+		}
+		#playbackBtn {
+			left: 150px;
+		}
 	</style>
 </head>
 <body>
 	<button id="startBtn">Start</button>
 	<button id="endBtn">Stop</button>
+	<button id="playbackBtn">Play</button>
+	<canvas id="playbackCanvas"></canvas>
 </body>
 </html>

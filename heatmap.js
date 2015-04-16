@@ -1,13 +1,13 @@
 var Heatmap = function(options){
   var options = options || {},
-  domain = options.domain || "",
-  page = options.page || "",
-  startBtn = options.startBtn || "",
-  endBtn = options.endBtn || "",
-  storedProcedures = [],
-  storedListeners = {},
-  running = false,
-  self = this;
+      domain = options.domain || "",
+      page = options.page || "",
+      startBtn = options.startBtn || "",
+      endBtn = options.endBtn || "",
+      storedProcedures = [],
+      storedListeners = {},
+      running = false,
+      self = this;
   /*
   window.addEventListener('onload', function(event) {
     this.startMapping();
